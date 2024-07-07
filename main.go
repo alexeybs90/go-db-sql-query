@@ -99,18 +99,12 @@ func insertClient(db *sql.DB, client Client) (int64, error) {
 func updateClientLogin(db *sql.DB, login string, id int64) error {
 	_, err := db.Exec("UPDATE clients SET login=:login WHERE id=:id",
 		sql.Named("login", login), sql.Named("id", id))
-	if err != nil {
-		return err
-	}
-	return nil
+	return err
 }
 
 func deleteClient(db *sql.DB, id int64) error {
 	_, err := db.Exec("DELETE FROM clients WHERE id=:id", sql.Named("id", id))
-	if err != nil {
-		return err
-	}
-	return nil
+	return err
 }
 
 func selectClient(db *sql.DB, id int64) (Client, error) {
